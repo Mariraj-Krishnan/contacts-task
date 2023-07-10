@@ -1,0 +1,8 @@
+<ContactForm
+  @title="Edit contact"
+  @submitLabel="Update"
+  @data={{this.model}}
+  @onSubmit={{action "update"}}
+  @onCancel={{action "cancel"}}
+/>
+{{outlet}}

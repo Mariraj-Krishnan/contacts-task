@@ -1,0 +1,10 @@
+<div class="container">
+  <aside class="side-bar">
+    <h1>Contacts</h1>
+    <LinkTo @route="create-contact">+ create new</LinkTo>
+    <ContactsList @contacts={{this.model}} />
+  </aside>
+  <main>
+    {{outlet}}
+  </main>
+</div>
