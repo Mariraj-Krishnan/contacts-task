@@ -4,7 +4,6 @@ module.exports = function (environment) {
   let ENV = {
     modulePrefix: "contacts-task",
     environment,
-    MAP_API_KEY: process.env.MY_API_KEY,
     rootURL: "/",
     locationType: "auto",
     EmberENV: {
