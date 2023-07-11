@@ -7,9 +7,6 @@ export default mainpulateContact.extend({
         .createRecord("contact", this.model)
         .save()
         .then(() => this.replaceRoute("contacts"));
-    },
-    cancel() {
-      this._super(...arguments)
-    },
+    }
   },
 });

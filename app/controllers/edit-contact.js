@@ -5,9 +5,6 @@ export default mainpulateContact.extend({
       const contact = this.store.peekRecord("contact", this.model.id);
       contact.setProperties(this.model);
       contact.save().then(() => this.replaceRoute("contacts"));
-    },
-    cancel() {
-      this._super(...arguments)
-    },
+    }
   },
 });
