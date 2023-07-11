@@ -1,6 +1,6 @@
-import Controller from "@ember/controller";
+import mainpulateContact from "./mainpulate-contact";
 
-export default Controller.extend({
+export default mainpulateContact.extend({
   actions: {
     create() {
       this.store
@@ -9,7 +9,7 @@ export default Controller.extend({
         .then(() => this.replaceRoute("contacts"));
     },
     cancel() {
-      this.transitionToRoute("contacts");
+      this._super(...arguments)
     },
   },
 });

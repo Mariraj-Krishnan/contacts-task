@@ -1,6 +1,5 @@
-import Controller from "@ember/controller";
-
-export default Controller.extend({
+import mainpulateContact from "./mainpulate-contact";
+export default mainpulateContact.extend({
   actions: {
     update() {
       const contact = this.store.peekRecord("contact", this.model.id);
@@ -8,7 +7,7 @@ export default Controller.extend({
       contact.save().then(() => this.replaceRoute("contacts"));
     },
     cancel() {
-      this.transitionToRoute("contacts");
+      this._super(...arguments)
     },
   },
 });
