@@ -42,21 +42,10 @@ export default Component.extend({
       keyForError: "addressError",
     },
   ],
-  validate() {
-    return this.inputFormats.reduce(
-      (valid, { key, pattern, label, keyForError }) => {
-        if (!this.data[key]) {
-          this.set(`errors.${keyForError}`, `${label} is required`);
-          return false;
-        }
-        if (!this.data[key].match(pattern)) {
-          this.set(`errors.${keyForError}`, `Invalid ${label.toLowerCase()}`);
-          return false;
-        }
-        return valid && true;
-      },
-      true
-    );
+  validateAll() {
+    return this.inputFormats.reduce((valid, format) => {
+      return this.actions.validateField.call(this, format, this.data[format.key]) && valid;
+    }, true);
   },
 
   hasChange() {
@@ -69,12 +58,26 @@ export default Component.extend({
 
   actions: {
     submit() {
-      if (this.validate() && this.hasChange()) {
+      if (this.validateAll() && this.hasChange()) {
         this.onSubmit();
       }
     },
     cancel() {
       this.onCancel();
     },
+
+    validateField({ pattern, label, keyForError }, value) {
+      this.set("errors.noChange","");
+      if (!value) {
+        this.set(`errors.${keyForError}`, `${label} is required`);
+        return false;
+      } 
+       if (!value.match(pattern)) {
+        this.set(`errors.${keyForError}`,`Invalid ${label.toLowerCase()}`);
+        return false;
+      }
+        this.set(`errors.${keyForError}`, '');
+        return true;
+    }
   },
 });

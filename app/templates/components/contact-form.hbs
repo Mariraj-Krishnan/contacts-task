@@ -5,6 +5,7 @@
       @format={{format}}
       @value={{get this.data format.key}}
       @error={{get this.errors format.keyForError}}
+      @onInput={{action "validateField" format}}
     />
   {{/each}}
   {{#if this.errors.noChange}}
